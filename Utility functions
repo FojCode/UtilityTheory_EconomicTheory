@@ -54,4 +54,28 @@ utility = quadratic_utility(wealth, linear_coefficient, quadratic_coefficient)
 print(f"The quadratic utility is: {utility}")
 
 # Absolute risk aversion 
+def utility_function(x):
+    # Define your utility function here
+    # Example: U(x) = log(x)
+    return math.log(x)
+
+def derivative(f, x, h=1e-5):
+    # A numerical approximation to the first derivative
+    return (f(x + h) - f(x - h)) / (2 * h)
+
+def second_derivative(f, x, h=1e-5):
+    # A numerical approximation to the second derivative
+    return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h)
+
+def absolute_risk_aversion(x):
+    first_derivative = derivative(utility_function, x)
+    second_derivative_value = second_derivative(utility_function, x)
+    return -second_derivative_value / first_derivative
+
+# Example:
+wealth = 100  # Replace with the actual wealth value
+ara = absolute_risk_aversion(wealth)
+print(f"The absolute risk aversion is: {ara}")
+
+# Relative risk aversion 
 
