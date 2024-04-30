@@ -25,4 +25,19 @@ utility = logarithmic_utility(wealth)
 print(f"The logarithmic utility is: {utility}")
 
 # Power function 
+def power_utility(x, gamma):
+    if gamma == 1:
+        return math.log(x)
+    elif x > 0 and gamma != 1:
+        return (x**(1 - gamma)) / (1 - gamma)
+    else:
+        return "Wealth must be greater than 0 and gamma should not be 1"
+
+# Example:
+wealth = 100  # Replace with the actual wealth value
+relative_risk_aversion = 0.5  # Replace with the actual coefficient value
+utility = power_utility(wealth, relative_risk_aversion)
+print(f"The power utility is: {utility}")
+
+# Quadratic function 
 
