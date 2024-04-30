@@ -1,0 +1,102 @@
+# Exponential function 
+import math
+
+def exponential_utility(x, a):
+    return 1 - math.exp(-a * x)
+
+# Example:
+wealth = 100  # Replace with the actual wealth value
+risk_aversion_coefficient = 0.6  # Replace with the actual coefficient value
+utility = exponential_utility(wealth, risk_aversion_coefficient)
+print(f"The exponential utility is: {utility}")
+
+# Logarithmic functions 
+import math
+
+def logarithmic_utility(x):
+    if x > 0:
+        return math.log(x)
+    else:
+        return "Wealth must be greater than 0"
+
+# Example:
+wealth = 100  # Replace with the actual wealth value
+utility = logarithmic_utility(wealth)
+print(f"The logarithmic utility is: {utility}")
+
+# Power function 
+def power_utility(x, gamma):
+    if gamma == 1:
+        return math.log(x)
+    elif x > 0 and gamma != 1:
+        return (x**(1 - gamma)) / (1 - gamma)
+    else:
+        return "Wealth must be greater than 0 and gamma should not be 1"
+
+# Example:
+wealth = 100  # Replace with the actual wealth value
+relative_risk_aversion = 0.5  # Replace with the actual coefficient value
+utility = power_utility(wealth, relative_risk_aversion)
+print(f"The power utility is: {utility}")
+
+# Quadratic function 
+def quadratic_utility(x, a, b):
+    if x < a / (2 * b):
+        return a * x - b * x**2
+    else:
+        return "Wealth exceeds the maximum limit for increasing utility"
+
+# Example:
+wealth = 100  # Replace with the actual wealth value
+linear_coefficient = 150  # Replace with the actual linear coefficient 'a'
+quadratic_coefficient = 1.5  # Replace with the actual quadratic coefficient 'b'
+utility = quadratic_utility(wealth, linear_coefficient, quadratic_coefficient)
+print(f"The quadratic utility is: {utility}")
+
+# Absolute risk aversion 
+def utility_function(x):
+    # Define utility function
+    # Example: U(x) = log(x)
+    return math.log(x)
+
+def derivative(f, x, h=1e-5):
+    # A numerical approximation to the first derivative
+    return (f(x + h) - f(x - h)) / (2 * h)
+
+def second_derivative(f, x, h=1e-5):
+    # A numerical approximation to the second derivative
+    return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h)
+
+def absolute_risk_aversion(x):
+    first_derivative = derivative(utility_function, x)
+    second_derivative_value = second_derivative(utility_function, x)
+    return -second_derivative_value / first_derivative
+
+# Example:
+wealth = 100  # Replace with the actual wealth value
+ara = absolute_risk_aversion(wealth)
+print(f"The absolute risk aversion is: {ara}")
+
+# Relative risk aversion 
+def utility_function(x):
+    # Define utility function
+    # Example: U(x) = x ** 0.5
+    return x ** 0.5
+
+def derivative(f, x, h=1e-5):
+    # A numerical approximation to the first derivative
+    return (f(x + h) - f(x - h)) / (2 * h)
+
+def second_derivative(f, x, h=1e-5):
+    # A numerical approximation to the second derivative
+    return (f(x + h) - 2 * f(x) + f(x - h)) / (h * h)
+
+def relative_risk_aversion(x):
+    first_derivative = derivative(utility_function, x)
+    second_derivative_value = second_derivative(utility_function, x)
+    return -x * second_derivative_value / first_derivative
+
+# Example:
+wealth = 100  # Replace with the actual wealth value
+rra = relative_risk_aversion(wealth)
+print(f"The relative risk aversion is: {rra}")
